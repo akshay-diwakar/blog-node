@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- calling head from partials -->
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="form-group">
+        <h2>All Blogs</h2>
+        <% if(blogs.length > 0) {%>
+            <% blogs.forEach(blog => { %>
+                <a href="/blogs/<%= blog._id %>">
+                    <h3 class="title"><%- blog.title %></h3>
+                    <h3 class="snippets"><%- blog.snippets %></h3>
+                </a>
+            <% }) %>
+        <% } else { %>            
+            <p2>there are no blogs.</p2>
+        <% } %> 
+    </div>
+</body>
+</html>
