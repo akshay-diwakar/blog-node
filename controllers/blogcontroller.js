@@ -29,15 +29,20 @@ const BlogPost = (req,res) => {
 BlogDetail = async (req,res) => {
     try{
         const id = req.params.id;
-        const blog = await Blog.find({_id : id})
+        const blog = await Blog.findById(id)
         console.log(blog);
         res.render('blogs/view',{title : blog.title, blog : blog});
 
     }catch(error){
+        if(!blog){
+            console.log(error);
+            res.render('blogs/view',{title : '404', blog : 'No Blog Found'});
+        }
         console.log(error);        
         res.status(404).render('404',{title : 'Blog Not Found'});
     } 
 }
+
 
 module.exports = {
     BlogIndex,
